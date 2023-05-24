@@ -17,3 +17,20 @@ def Frobenius_Norm_New(x:torch.tensor,dim=-1,keepdim = False):
         return x_ 
 #x = Frobenius_Norm_New(tensor1,dim=1)
 #print(x)
+
+
+def expand_dim(x, expand_as, dim):
+    #assert isinstance(x,torch.Tensor),'The type of input should be torch tensor'
+    #assert isinstance(expand_as,torch.Tensor),'The type of target should be torch tensor as well'
+    #first to create zeros tensor like the shape of target tensor
+    target = torch.zeros_like(expand_as)
+    print(target.shape)
+    if dim == -1 or dim == len(x.shape)-1:
+        for i in range(x.shape[-1]):
+            target[i,:]=x[0,i]
+        return target
+    else:
+        for i in range(x.shape[-1]):
+            target[:,i]=x[0,i]
+        return target
+target = expand_dim(x,tensor1,0)
